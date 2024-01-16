@@ -1,2 +1,2 @@
 # games-play-react
-Exersise task withReact in Softuni course
+Exersise task with React in Softuni course by given HTML and CSS template
