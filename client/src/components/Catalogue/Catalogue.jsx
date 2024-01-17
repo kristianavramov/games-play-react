@@ -1,38 +1,27 @@
+import { useEffect, useState } from "react";
+import GameForCatalogue from "./game-for-catalogue";
+
+
+const baseUrl = 'http://localhost:3030/jsonstore/games'
+
+
 export default function Catalogue() {
+
+    const [allGames , allGamesFetchFn] = useState([])
+
+    useEffect(()=>{
+        fetch(baseUrl).then(res => res.json()).then(data => allGamesFetchFn(Object.values(data)))
+    }, [])
+    
+console.log(allGames)
     return (
         <section id="catalog-page">
             <h1>All Games</h1>
 
             <div className="allGames">
-                <div className="allGames-info">
-                    <img src="./images/avatar-1.jpg" />
-                    <h6>Action</h6>
-                    <h2>Cover Fire</h2>
-                    <a href="#" className="details-button">
-                        Details
-                    </a>
-                </div>
+                {allGames.map(game =>  <GameForCatalogue key={game._id} props = {{...game}}/> )}
             </div>
-            <div className="allGames">
-                <div className="allGames-info">
-                    <img src="./images/avatar-1.jpg" />
-                    <h6>Action</h6>
-                    <h2>Zombie lang</h2>
-                    <a href="#" className="details-button">
-                        Details
-                    </a>
-                </div>
-            </div>
-            <div className="allGames">
-                <div className="allGames-info">
-                    <img src="./images/avatar-1.jpg" />
-                    <h6>Action</h6>
-                    <h2>MineCraft</h2>
-                    <a href="#" className="details-button">
-                        Details
-                    </a>
-                </div>
-            </div>
+            
 
             <h3 className="no-articles">No articles yet</h3>
         </section>
