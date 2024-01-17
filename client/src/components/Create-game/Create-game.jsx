@@ -95,9 +95,11 @@ export default function CreateGame() {
                         value="Create Game"
                         onClick={(e) => {
                             e.preventDefault();
+                            console.log(createdGame)
+                            
                             services.addNewGame(createdGame);
-                            setCreatedGame(initialData)
 
+                            setCreatedGame(initialData);
                         }}
                     />
                 </div>

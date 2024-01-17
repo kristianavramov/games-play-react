@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 const baseUrl = `http://localhost:3030/jsonstore/games`;
 const services = {};
 
@@ -23,13 +23,22 @@ const addNewGame = async (data) => {
         },
         body: JSON.stringify(data),
     });
-    if (!response.ok) {
-        throw new Error(
-            `Failed to add new game. Server returned ${response.status}`
-        );
-    }
     const responseData = await response.json();
     console.log("Response from the server:", responseData);
 };
 services.addNewGame = addNewGame;
+
+function getDetailsOfGame() {
+    const [details, detailsFn] = useState([]);
+    const {gameid} = useParams()
+    useEffect(() => {
+        fetch(`${baseUrl}/${gameid}`)
+            .then((res) => res.json())
+            .then((data) => detailsFn(data))
+            .catch(err =>console.log(err));
+    }, []);
+    return details;
+}
+services.getDetailsOfGame = getDetailsOfGame;
+
 export default services;

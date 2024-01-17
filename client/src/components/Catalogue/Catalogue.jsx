@@ -9,7 +9,7 @@ import services from "../../services/services";
 export default function Catalogue() {
 
     let allGames = services.getAllGames()
-    
+    console.log(allGames)
     return (
         <section id="catalog-page">
             <h1>All Games</h1>
