@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
 import GameForCatalogue from "./game-for-catalogue";
+import services from "../../services/services";
 
 
-const baseUrl = 'http://localhost:3030/jsonstore/games'
+
 
 
 export default function Catalogue() {
 
-    const [allGames , allGamesFetchFn] = useState([])
-
-    useEffect(()=>{
-        fetch(baseUrl).then(res => res.json()).then(data => allGamesFetchFn(Object.values(data)))
-    }, [])
+    let allGames = services.getAllGames()
     
-console.log(allGames)
     return (
         <section id="catalog-page">
             <h1>All Games</h1>

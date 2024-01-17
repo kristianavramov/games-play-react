@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import services from "../../services/services";
 let initialData = {
     title: "",
     category: "",
@@ -95,8 +95,9 @@ export default function CreateGame() {
                         value="Create Game"
                         onClick={(e) => {
                             e.preventDefault();
-                            console.log(createdGame);
+                            services.addNewGame(createdGame);
                             setCreatedGame(initialData)
+
                         }}
                     />
                 </div>
