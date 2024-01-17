@@ -14,9 +14,7 @@ export default function Catalogue() {
         <section id="catalog-page">
             <h1>All Games</h1>
 
-            <div className="allGames">
                 {allGames.map(game =>  <GameForCatalogue key={game._id} props = {{...game}}/> )}
-            </div>
             
 
             <h3 className="no-articles">No articles yet</h3>

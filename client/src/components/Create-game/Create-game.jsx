@@ -10,7 +10,7 @@ let initialData = {
 
 export default function CreateGame() {
     let [createdGame, setCreatedGame] = useState(initialData);
-    
+
     return (
         <section id="create-page" className="auth">
             <form id="create">
@@ -95,10 +95,7 @@ export default function CreateGame() {
                         value="Create Game"
                         onClick={(e) => {
                             e.preventDefault();
-                            console.log(createdGame)
-                            
                             services.addNewGame(createdGame);
-
                             setCreatedGame(initialData);
                         }}
                     />
