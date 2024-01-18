@@ -5,8 +5,12 @@ import services from "../../services/services";
 
 export default function GameDetails() {
     const [data, setData] = useState({});
+    const [comment, setComment] = useState("");
+    const [commentFromServer, setComments] = useState({})
     const { gameid } = useParams();
-
+    useEffect(() => {
+        setComment("");
+    }, []);
     useEffect(() => {
         async function getData() {
             let dataFetched = await services.getDetailsOfGame(gameid);
@@ -14,6 +18,8 @@ export default function GameDetails() {
         }
         getData();
     }, [gameid]);
+
+    
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -37,10 +43,30 @@ export default function GameDetails() {
                             <p>Content: The best game.</p>
                         </li>
                     </ul>
-
-                    <p className="no-comment">No comments.</p>
+                    {commentFromServer && <p className="no-comment">No comments.</p>}
                 </div>
             </div>
+            <article className="create-comment">
+                <label>Add new comment:</label>
+                <form className="form">
+                    <textarea
+                        name="comment"
+                        placeholder="Comment......"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                    ></textarea>
+                    <input
+                        className="btn submit"
+                        type="button"
+                        value="Add Comment"
+                        onClick={(e) => {
+                            e.preventDefault;
+                            services.createComment(comment, gameid);
+                            setComment("")
+                        }}
+                    />
+                </form>
+            </article>
         </section>
     );
 }
