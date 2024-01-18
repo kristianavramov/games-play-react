@@ -4,7 +4,6 @@ const services = {};
 function getAllGames() {
     return fetch(baseUrl)
         .then((res) => res.json())
-        .then((data) => data)
         .catch((err) => console.log(err));
 }
 services.getAllGames = getAllGames;

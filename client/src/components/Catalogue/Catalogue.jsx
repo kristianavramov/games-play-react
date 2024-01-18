@@ -17,11 +17,11 @@ export default function Catalogue() {
         <section id="catalog-page">
             <h1>All Games</h1>
 
-            {allGames.map((game) => (
-                <GameForCatalogue key={game._id} props={{ ...game }} />
-            ))}
-
-            <h3 className="no-articles">No articles yet</h3>
+            {allGames &&
+                allGames.map((game) => (
+                    <GameForCatalogue key={game._id} props={{ ...game }} />
+                ))}
+            {!allGames && <h3 className="no-articles">No articles yet</h3>}
         </section>
     );
 }
