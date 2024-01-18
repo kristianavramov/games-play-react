@@ -1,9 +1,20 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import services from "../../services/services";
 
 export default function GameDetails() {
-    const data = services.getDetailsOfGame()
-    return (
+    const [data, setData] = useState({});
+    const { gameid } = useParams();
 
+    useEffect(() => {
+        async function getData() {
+            let dataFetched = await services.getDetailsOfGame(gameid);
+            setData(dataFetched);
+        }
+        getData();
+    }, [gameid]);
+    return (
         <section id="game-details">
             <h1>Game Details</h1>
             <div className="info-section">
@@ -14,9 +25,7 @@ export default function GameDetails() {
                     <p className="type">{data.category}</p>
                 </div>
 
-                <p className="text">
-                    {data.summary}
-                </p>
+                <p className="text">{data.summary}</p>
 
                 <div className="details-comments">
                     <h2>Comments:</h2>

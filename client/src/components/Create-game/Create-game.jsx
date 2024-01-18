@@ -4,7 +4,7 @@ let initialData = {
     title: "",
     category: "",
     maxLevel: "",
-    imgUrl: "",
+    imageUrl: "",
     summary: "",
 };
 
@@ -71,10 +71,10 @@ export default function CreateGame() {
                         onChange={(e) =>
                             setCreatedGame({
                                 ...createdGame,
-                                imgUrl: e.target.value,
+                                imageUrl: e.target.value,
                             })
                         }
-                        value={createdGame.imgUrl}
+                        value={createdGame.imageUrl}
                     />
 
                     <label htmlFor="summary">Summary:</label>

@@ -2,20 +2,24 @@ import { useEffect, useState } from "react";
 import GameForCatalogue from "./game-for-catalogue";
 import services from "../../services/services";
 
-
-
-
-
 export default function Catalogue() {
+    const [allGames, setAllGames] = useState([]);
+    useEffect(() => {
+        async function getData() {
+            let allGamesFromFetch = await services.getAllGames();
 
-    let allGames = services.getAllGames()
-    console.log(allGames)
+            setAllGames(Object.values(allGamesFromFetch));
+        }
+        getData();
+    }, []);
+
     return (
         <section id="catalog-page">
             <h1>All Games</h1>
 
-                {allGames.map(game =>  <GameForCatalogue key={game._id} props = {{...game}}/> )}
-            
+            {allGames.map((game) => (
+                <GameForCatalogue key={game._id} props={{ ...game }} />
+            ))}
 
             <h3 className="no-articles">No articles yet</h3>
         </section>
