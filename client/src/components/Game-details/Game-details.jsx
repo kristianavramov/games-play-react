@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import Comments from "./Comments";
 import services from "../../services/services";
 
 export default function GameDetails() {
+    const matchingComments = [];
     const [data, setData] = useState({});
     const [comment, setComment] = useState("");
-    const [commentFromServer, setComments] = useState({})
+    const [commentFromServer, setComments] = useState({});
     const { gameid } = useParams();
     useEffect(() => {
         setComment("");
@@ -19,32 +20,19 @@ export default function GameDetails() {
         getData();
     }, [gameid]);
 
-    
     return (
         <section id="game-details">
             <h1>Game Details</h1>
             <div className="info-section">
                 <div className="game-header">
-                    <img className="game-img" src="images/MineCraft.png" />
+                    <img className="game-img" src={data.imageUrl} />
                     <h1>{data.title}</h1>
                     <span className="levels">{data.maxLevel}</span>
                     <p className="type">{data.category}</p>
                 </div>
 
                 <p className="text">{data.summary}</p>
-
-                <div className="details-comments">
-                    <h2>Comments:</h2>
-                    <ul>
-                        <li className="comment">
-                            <p>Content: I rate this one quite highly.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: The best game.</p>
-                        </li>
-                    </ul>
-                    {commentFromServer && <p className="no-comment">No comments.</p>}
-                </div>
+                <Comments />
             </div>
             <article className="create-comment">
                 <label>Add new comment:</label>
@@ -62,7 +50,7 @@ export default function GameDetails() {
                         onClick={(e) => {
                             e.preventDefault;
                             services.createComment(comment, gameid);
-                            setComment("")
+                            setComment("");
                         }}
                     />
                 </form>

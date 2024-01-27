@@ -1,6 +1,3 @@
-
-
-
 {
     "3564027f-adcd-4425-b2c0-1253d2386c0c": {
         "title": "Test game",
@@ -9,7 +6,13 @@
         "imageUrl": "https://gameranx.com/wp-content/uploads/2020/04/Shadowgun.jpg",
         "summary": "Fantasy game",
         "_id": "3564027f-adcd-4425-b2c0-1253d2386c0c"
+    },
+    "bc1542af-6e8b-482a-9f96-cf451587351b": {
+        "title": "Test name 2",
+        "category": "Action",
+        "maxLevel": "32",
+        "imageUrl": "https://gameranx.com/wp-content/uploads/2020/04/Shadowgun.jpg",
+        "summary": "summary of test game 2",
+        "_id": "bc1542af-6e8b-482a-9f96-cf451587351b"
     }
-    
 }
-

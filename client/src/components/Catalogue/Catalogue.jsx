@@ -21,7 +21,7 @@ export default function Catalogue() {
                 allGames.map((game) => (
                     <GameForCatalogue key={game._id} props={{ ...game }} />
                 ))}
-            {!allGames && <h3 className="no-articles">No articles yet</h3>}
+            {allGames.length == 0 && <h3 className="no-articles">No articles yet</h3>}
         </section>
     );
 }

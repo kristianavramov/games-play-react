@@ -26,12 +26,6 @@ function addNewGame(data) {
 }
 services.addNewGame = addNewGame;
 
-function getComments(gameid){
-    return fetch(`${baseUrl}/comments/${gameid}`)
-        .then((res) => res.json())
-        .catch((err) => console.log(err));
-}
-services.getComments = getComments;
 
 function createComment(comment,gameid){
     fetch(`${baseUrl}/comments`, {
@@ -41,7 +35,6 @@ function createComment(comment,gameid){
         },
         body: JSON.stringify({comment, gameId: gameid}),
     })
-    .then(com => console.log(com))
     .catch((err) => console.log(err));
 }
 services.createComment = createComment
